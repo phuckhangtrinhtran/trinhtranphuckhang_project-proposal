@@ -16,9 +16,6 @@ export default function LoginPage() {
     try {
       const res = await apiLogin(form)
       const token = res.data.access_token
-      // Lưu token vào localStorage TRƯỚC khi gọi getMe()
-      // để axios interceptor có thể đính kèm Bearer token
-      localStorage.setItem('token', token)
       const meRes = await getMe()
       login(token, meRes.data)
       toast.success(`Xin chào, ${meRes.data.username}!`)
